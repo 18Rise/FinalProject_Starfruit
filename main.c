@@ -19,77 +19,97 @@ void inputRumah(Rumah *r)
     scanf("%d", &r->kekeruhan);
 }
 
+void menambahkanRumah(Rumah *rumah, int *jumlah_rumah)
+{
+    printf("\n\nJumlah data rumah saat ini: %d", *jumlah_rumah);
+
+    int n;
+    printf("\nBerapa rumah yang ingin diinput? ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("\n[Rumah %d]\n", *jumlah_rumah + 1);
+        inputRumah(&rumah[*jumlah_rumah]);
+        (*jumlah_rumah)++;
+    }
+}
+
 int main()
 {
-    printf("Sistem Evaluasi Konsumsi & Kualitas Air Rumah Tangga\n");
+    printf("\n======= Sistem Evaluasi Konsumsi & Kualitas Air Rumah Tangga =======\n");
 
+    bool cek = true;
     Rumah rumah[MAX];
     int jumlah_rumah = 0;
-    char c;
 
-    while (1)
+    while (cek)
     {
-        printf("\nInput rumah baru? (Y/N): ");
-        scanf(" %c", &c);
-        getchar();
-
-        if (c == 'Y' || c == 'y')
-        {
-            int n;
-            printf("Berapa rumah yang ingin diinput? ");
-            scanf("%d", &n);
-
-            for (int i = 0; i < n; i++)
-            {
-                printf("\n[Rumah %d]\n", jumlah_rumah + 1);
-                inputRumah(&rumah[jumlah_rumah]);
-                jumlah_rumah++;
-            }
-        }
-        else if (jumlah_rumah == 0)
-        {
-            printf("Belum ada data rumah. Silakan input terlebih dahulu.\n");
-            continue;
-        }
-
         int choice;
-        printf("\nApa yang ingin dilakukan?\n1. Evaluasi Konsumsi\n2. Evaluasi Sanitasi\n3. Tampilkan Semua Data\n0. Keluar\n");
+        printf("\nApa yang ingin dilakukan?\n1. Tambah Rumah\n2. Evaluasi Konsumsi\n3. Evaluasi Sanitasi\n4. Tampilkan Semua Data\n0. Keluar\n");
         printf("Pilihan: ");
         scanf("%d", &choice);
 
         if (choice == 0)
-            break;
+        {
+            cek = false;
+            continue;
+        }
 
         switch (choice)
         {
         case 1:
-            for (int i = 0; i < jumlah_rumah; i++)
-            {
-                evaluasiKonsumsi(&rumah[i]);
-                printf("\n[Rumah: %s] Konsumsi: %dL, Kategori: %d, Poin: %d\n",
-                       rumah[i].nama, rumah[i].konsumsi_air, rumah[i].kategori, rumah[i].poin_insentif);
-            }
+            menambahkanRumah(rumah, &jumlah_rumah);
             break;
-
         case 2:
-            for (int i = 0; i < jumlah_rumah; i++)
+            if (jumlah_rumah == 0)
             {
-                evaluasiSanitasi(&rumah[i]);
-                printf("\n[Rumah: %s] PH: %.1f, Bau: %d, Kekeruhan: %d, Status: %d\n",
-                       rumah[i].nama, rumah[i].ph, rumah[i].bau, rumah[i].kekeruhan, rumah[i].sanitasi);
+                printf("Belum ada data rumah. Silakan input terlebih dahulu.\n");
+            }
+            else
+            {
+                for (int i = 0; i < jumlah_rumah; i++)
+                {
+                    evaluasiKonsumsi(&rumah[i]);
+                    printf("\n[Rumah: %s] Konsumsi: %dL, Kategori: %d, Poin: %d\n",
+                           rumah[i].nama, rumah[i].konsumsi_air, rumah[i].kategori, rumah[i].poin_insentif);
+                }
             }
             break;
 
         case 3:
-            for (int i = 0; i < jumlah_rumah; i++)
+            if (jumlah_rumah == 0)
             {
-                printf("\n--- Rumah %d ---\n", i + 1);
-                printf("Nama: %s\n", rumah[i].nama);
-                printf("Konsumsi: %d L\n", rumah[i].konsumsi_air);
-                printf("PH: %.1f | Bau: %d | Kekeruhan: %d\n",
-                       rumah[i].ph, rumah[i].bau, rumah[i].kekeruhan);
-                printf("Kategori: %d | Status Sanitasi: %d | Poin: %d\n",
-                       rumah[i].kategori, rumah[i].sanitasi, rumah[i].poin_insentif);
+                printf("Belum ada data rumah. Silakan input terlebih dahulu.\n");
+            }
+            else
+            {
+                for (int i = 0; i < jumlah_rumah; i++)
+                {
+                    evaluasiSanitasi(&rumah[i]);
+                    printf("\n[Rumah: %s] PH: %.1f, Bau: %d, Kekeruhan: %d, Status: %d\n",
+                           rumah[i].nama, rumah[i].ph, rumah[i].bau, rumah[i].kekeruhan, rumah[i].sanitasi);
+                }
+            }
+            break;
+
+        case 4:
+            if (jumlah_rumah == 0)
+            {
+                printf("Belum ada data rumah. Silakan input terlebih dahulu.\n");
+            }
+            else
+            {
+                for (int i = 0; i < jumlah_rumah; i++)
+                {
+                    printf("\n--- Rumah %d ---\n", i + 1);
+                    printf("Nama: %s\n", rumah[i].nama);
+                    printf("Konsumsi: %d L\n", rumah[i].konsumsi_air);
+                    printf("PH: %.1f | Bau: %d | Kekeruhan: %d\n",
+                           rumah[i].ph, rumah[i].bau, rumah[i].kekeruhan);
+                    printf("Kategori: %d | Status Sanitasi: %d | Poin: %d\n",
+                           rumah[i].kategori, rumah[i].sanitasi, rumah[i].poin_insentif);
+                }
             }
             break;
 

@@ -29,7 +29,6 @@ typedef struct
 
 void evaluasiKonsumsi(Rumah *r);
 int hitungPoin(KategoriAir kategori);
-
 void evaluasiSanitasi(Rumah *r);
 
 #endif
