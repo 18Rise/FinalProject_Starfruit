@@ -1,5 +1,5 @@
 #include "choice.h"
 
-void evaluasiSanitasi()
+void evaluasiSanitasi(Rumah *r)
 {
 }

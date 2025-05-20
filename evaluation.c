@@ -1,5 +1,5 @@
 #include "choice.h"
 
-void evaluasiKonsumsi()
+void evaluasiKonsumsi(Rumah *r)
 {
 }
