@@ -1,5 +1,5 @@
 #include "choice.h"
 
-void sanitation()
+void evaluasiSanitasi()
 {
 }
