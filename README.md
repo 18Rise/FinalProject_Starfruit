@@ -1,5 +1,7 @@
 # Final Project Kelompok Starfruit
 
+Anggota kelompok:
+
 ## Tujuan Program
 
 Program memungkinkan user untuk:
@@ -13,7 +15,7 @@ Program memungkinkan user untuk:
 Compile
 
 ```bash
-gcc main.c sanitation.c evaluation.c -o main.exe
+gcc main.c filter.c evaluation.c -o main.exe
 ```
 
 Run
