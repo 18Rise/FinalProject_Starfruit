@@ -3,13 +3,6 @@
 
 typedef enum
 {
-    HEMAT,
-    NORMAL,
-    BOROS
-} KategoriAir;
-
-typedef enum
-{
     BURUK,
     SEDANG,
     BAIK
@@ -18,17 +11,15 @@ typedef enum
 typedef struct
 {
     char nama[30];
-    int konsumsi_air;
     int bau;
     float ph;
     int kekeruhan;
-    KategoriAir kategori;
     StatusSanitasi sanitasi;
     int poin_insentif;
 } Rumah;
 
-void evaluasiKonsumsi(Rumah *r);
-int hitungPoin(KategoriAir kategori);
-void evaluasiSanitasi(Rumah *r);
+const char *sanitasiToStr(StatusSanitasi s);
+void evaluasiAir(Rumah *r);
+void prosesFilter(Rumah *r);
 
 #endif

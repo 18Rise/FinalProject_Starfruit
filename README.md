@@ -5,9 +5,8 @@
 Program memungkinkan user untuk:
 
 - Memasukkan data rumah: nama, pemakaian air per bulan, dan data kualitas air.
-- Memilih evaluasi:
-  - Evaluasi efisiensi konsumsi air (insentif hemat)
-  - Evaluasi sanitasi/kualitas air (status aman atau tidak)
+- Melakukan evaluasi air pada setiap rumah berdasarkan pH, kekeruhan, dan bau.
+- Melakukan filter air pada rumah yang dipilih oleh user.
 
 ## Cara menjalankan program
 
