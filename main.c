@@ -10,11 +10,11 @@ void inputRumah(Rumah *r)
     printf("Nama\t\t\t: ");
     scanf(" %[^\n]", r->nama);
     printf("Apakah air berbau? (1 = Ya, 0 = Tidak): ");
-    scanf("%d", &r->bau);
+    scanf(" %d", &r->bau);
     printf("pH air\t\t\t: ");
-    scanf("%f", &r->ph);
+    scanf(" %f", &r->ph);
     printf("Kekeruhan air (NTU)\t: ");
-    scanf("%d", &r->kekeruhan);
+    scanf(" %d", &r->kekeruhan);
 }
 
 void menambahkanRumah(Rumah *rumah, int *jumlah_rumah)
@@ -68,7 +68,7 @@ int main()
             {
                 for (int i = 0; i < jumlah_rumah; i++)
                 {
-                    evaluasiAir(rumah);
+                    evaluasiAir(&rumah[i]);
                     printf("\n[Rumah: %s]\n", rumah[i].nama);
                     printf("PH: %.1f | Bau: %s | Kekeruhan: %d NTU\n", rumah[i].ph, rumah[i].bau ? "Ya" : "Tidak", rumah[i].kekeruhan);
                     printf("Status Sanitasi: %s\n", sanitasiToStr(rumah[i].sanitasi));
