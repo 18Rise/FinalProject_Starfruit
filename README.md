@@ -1,6 +1,12 @@
 # Final Project Kelompok Starfruit
 
-Anggota kelompok:
+| Nama                       | NPM        |
+| -------------------------- | ---------- |
+| Caesar Nur Falah Widiyanto | 2406487052 |
+| Naziehan labieb            | 2406487102 |
+| Satrio Atalla Rahardjo     | 2406413666 |
+| YusrI Sukur                | 2406345305 |
+| Zahir                      | 2406487084 |
 
 ## Tujuan Program
 
