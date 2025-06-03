@@ -1,4 +1,3 @@
-// choice.h
 #ifndef CHOICE_H
 #define CHOICE_H
 
@@ -17,7 +16,7 @@ typedef struct
     int kekeruhan;
     StatusSanitasi sanitasi;
     int poin_insentif;
-    int aksiFilterTelahDigunakan; // <<< ANGGOTA BARU DITAMBAHKAN
+    int aksiFilterTelahDigunakan;
 } Rumah;
 
 const char *sanitasiToStr(StatusSanitasi s);
