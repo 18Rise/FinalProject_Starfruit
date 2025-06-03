@@ -1,4 +1,5 @@
 #include "choice.h"
+#include <stdio.h>
 
 const char *sanitasiToStr(StatusSanitasi s)
 {
