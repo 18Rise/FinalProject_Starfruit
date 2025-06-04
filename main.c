@@ -138,8 +138,8 @@ int main()
 {
     printf("\n======= Sistem Evaluasi Konsumsi & Kualitas Air Rumah Tangga =======\n");
     int program_berjalan = 1;
-    Rumah data_semua_rumah[MAX];
-    int jumlah_rumah_saat_ini = 0;
+    Rumah rumah[MAX];
+    int jumlah_rumah = 0;
     int ch;
 
     while (program_berjalan)
@@ -156,12 +156,9 @@ int main()
         if (scanf("%d", &pilihan_menu) != 1)
         {
             printf("Input tidak valid. Harap masukkan angka.\n");
-            while ((ch = getchar()) != '\n' && ch != EOF)
-                ;
-            continue;
+            getchar();
         }
-        while ((ch = getchar()) != '\n' && ch != EOF)
-            ;
+        getchar();
 
         switch (pilihan_menu)
         {
@@ -170,33 +167,34 @@ int main()
             break;
 
         case 1:
-            menambahkanRumah(data_semua_rumah, &jumlah_rumah_saat_ini);
+            menambahkanRumah(rumah, &jumlah_rumah);
             break;
 
         case 2:
-            if (jumlah_rumah_saat_ini == 0)
+            if (jumlah_rumah == 0)
             {
                 printf("\nBelum ada data rumah. Silakan input terlebih dahulu.\n");
             }
             else
             {
                 printf("\n--- Hasil Evaluasi Kualitas Air ---\n");
-                for (int i = 0; i < jumlah_rumah_saat_ini; i++)
+                for (int i = 0; i < jumlah_rumah; i++)
                 {
-                    evaluasiAir(&data_semua_rumah[i]);
-                    printf("\n[Rumah: %s]\n", data_semua_rumah[i].nama);
+                    evaluasiAir(&rumah[i]);
+                    printf("\n[Rumah: %s]\n", rumah[i].nama);
                     printf("  PH: %.1f | Bau: %s | Kekeruhan: %d NTU\n",
-                           data_semua_rumah[i].ph,
-                           data_semua_rumah[i].bau == 1 ? "Ya" : "Tidak",
-                           data_semua_rumah[i].kekeruhan);
-                    printf("  Status Sanitasi: %s\n", sanitasiToStr(data_semua_rumah[i].sanitasi));
-                    printf("  Poin Insentif: %d\n", data_semua_rumah[i].poin_insentif);
+                           rumah[i].ph,
+                           rumah[i].bau == 1 ? "Ya" : "Tidak",
+                           rumah[i].kekeruhan);
+                    printf("  Status Sanitasi: %s\n", sanitasiToStr(rumah[i].sanitasi));
+                    printf("  Poin Insentif: %d\n", rumah[i].poin_insentif);
+                    beriRekomendasi(&rumah[i]);
                 }
             }
             break;
 
         case 3:
-            if (jumlah_rumah_saat_ini == 0)
+            if (jumlah_rumah == 0)
             {
                 printf("\nBelum ada data rumah. Silakan input terlebih dahulu.\n");
             }
@@ -205,44 +203,44 @@ int main()
                 int nomor_rumah_untuk_filter;
                 int indeks_dipilih = -1;
 
-                if (jumlah_rumah_saat_ini == 1)
+                if (jumlah_rumah == 1)
                 {
-                    if (data_semua_rumah[0].aksiFilterTelahDigunakan >= 3)
+                    if (rumah[0].aksiFilterTelahDigunakan >= 3)
                     {
-                        printf("\nRumah %s sudah mencapai batas maksimal (3 kali) tindakan filter.\n", data_semua_rumah[0].nama);
+                        printf("\nRumah %s sudah mencapai batas maksimal (3 kali) tindakan filter.\n", rumah[0].nama);
                     }
                     else
                     {
                         printf("\nMemproses filter untuk satu-satunya rumah: %s (Sisa kesempatan: %d).\n",
-                               data_semua_rumah[0].nama,
-                               3 - data_semua_rumah[0].aksiFilterTelahDigunakan);
+                               rumah[0].nama,
+                               3 - rumah[0].aksiFilterTelahDigunakan);
                         indeks_dipilih = 0;
                     }
                 }
                 else
                 {
                     printf("\n--- Pilih Rumah untuk Difilter ---\n");
-                    for (int i = 0; i < jumlah_rumah_saat_ini; i++)
+                    for (int i = 0; i < jumlah_rumah; i++)
                     {
                         printf("%d. %s (Telah digunakan: %d dari 3 kesempatan filter, Poin: %d)\n",
                                i + 1,
-                               data_semua_rumah[i].nama,
-                               data_semua_rumah[i].aksiFilterTelahDigunakan,
-                               data_semua_rumah[i].poin_insentif);
+                               rumah[i].nama,
+                               rumah[i].aksiFilterTelahDigunakan,
+                               rumah[i].poin_insentif);
                     }
-                    printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah_saat_ini);
+                    printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah);
 
                     while (1)
                     {
                         if (scanf("%d", &nomor_rumah_untuk_filter) == 1 &&
-                            nomor_rumah_untuk_filter >= 1 && nomor_rumah_untuk_filter <= jumlah_rumah_saat_ini)
+                            nomor_rumah_untuk_filter >= 1 && nomor_rumah_untuk_filter <= jumlah_rumah)
                         {
                             indeks_dipilih = nomor_rumah_untuk_filter - 1;
-                            if (data_semua_rumah[indeks_dipilih].aksiFilterTelahDigunakan >= 3)
+                            if (rumah[indeks_dipilih].aksiFilterTelahDigunakan >= 3)
                             {
-                                printf("\nRumah %s sudah mencapai batas maksimal (3 kali) tindakan filter. Pilih rumah lain.\n", data_semua_rumah[indeks_dipilih].nama);
+                                printf("\nRumah %s sudah mencapai batas maksimal (3 kali) tindakan filter. Pilih rumah lain.\n", rumah[indeks_dipilih].nama);
                                 indeks_dipilih = -1;
-                                printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah_saat_ini);
+                                printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah);
                             }
                             else
                             {
@@ -252,7 +250,7 @@ int main()
                         else
                         {
                             printf("Input tidak valid. Ulangi.\n");
-                            printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah_saat_ini); // Minta input lagi
+                            printf("Masukkan nomor rumah (1-%d): ", jumlah_rumah); // Minta input lagi
                         }
                         while ((ch = getchar()) != '\n' && ch != EOF)
                             ;
@@ -263,48 +261,57 @@ int main()
 
                 if (indeks_dipilih != -1)
                 {
-                    printf("\nAnda memilih untuk memfilter Rumah: %s\n", data_semua_rumah[indeks_dipilih].nama);
+                    printf("\nAnda memilih untuk memfilter Rumah: %s\n", rumah[indeks_dipilih].nama);
 
-                    StatusSanitasi status_sebelum_filter = data_semua_rumah[indeks_dipilih].sanitasi;
-                    int filter_digunakan_sebelum_sesi_ini = data_semua_rumah[indeks_dipilih].aksiFilterTelahDigunakan;
+                    StatusSanitasi status_sebelum_filter = rumah[indeks_dipilih].sanitasi;
+                    int filter_digunakan_sebelum_sesi_ini = rumah[indeks_dipilih].aksiFilterTelahDigunakan;
 
-                    prosesFilter(&data_semua_rumah[indeks_dipilih]);
+                    prosesFilter(&rumah[indeks_dipilih]);
 
-                    evaluasiAir(&data_semua_rumah[indeks_dipilih]);
+                    evaluasiAir(&rumah[indeks_dipilih]);
 
-                    updatePoinSetelahFilter(&data_semua_rumah[indeks_dipilih], status_sebelum_filter, filter_digunakan_sebelum_sesi_ini);
+                    updatePoinSetelahFilter(&rumah[indeks_dipilih], status_sebelum_filter, filter_digunakan_sebelum_sesi_ini);
 
-                    printf("\nStatus Air Rumah %s Setelah Sesi Filter:\n", data_semua_rumah[indeks_dipilih].nama);
+                    printf("\nStatus Air Rumah %s Setelah Sesi Filter:\n", rumah[indeks_dipilih].nama);
                     printf("  PH: %.1f | Bau: %s | Kekeruhan: %d NTU\n",
-                           data_semua_rumah[indeks_dipilih].ph,
-                           data_semua_rumah[indeks_dipilih].bau == 1 ? "Ya" : "Tidak",
-                           data_semua_rumah[indeks_dipilih].kekeruhan);
-                    printf("  Status Sanitasi Baru: %s\n", sanitasiToStr(data_semua_rumah[indeks_dipilih].sanitasi));
-                    printf("  Poin Insentif Saat Ini: %d\n", data_semua_rumah[indeks_dipilih].poin_insentif);
-                    printf("  Total aksi filter digunakan untuk rumah ini: %d\n", data_semua_rumah[indeks_dipilih].aksiFilterTelahDigunakan);
+                           rumah[indeks_dipilih].ph,
+                           rumah[indeks_dipilih].bau == 1 ? "Ya" : "Tidak",
+                           rumah[indeks_dipilih].kekeruhan);
+                    printf("  Status Sanitasi Baru: %s\n", sanitasiToStr(rumah[indeks_dipilih].sanitasi));
+                    printf("  Poin Insentif Saat Ini: %d\n", rumah[indeks_dipilih].poin_insentif);
+                    printf("  Total aksi filter digunakan untuk rumah ini: %d\n", rumah[indeks_dipilih].aksiFilterTelahDigunakan);
+                    printf("Aksi Filter Digunakan: %d dari 3\n", rumah[indeks_dipilih].aksiFilterTelahDigunakan);
+                    if (rumah[indeks_dipilih].sanitasi == BURUK)
+                    {
+                        printf("Catatan: %s\n", rumah[indeks_dipilih].catatan.rekomendasi);
+                    }
+                    else
+                    {
+                        printf("Hari sejak filter terakhir: %d\n", rumah[indeks_dipilih].catatan.hariSejakFilter);
+                    }
                 }
             }
             break;
 
         case 4:
-            if (jumlah_rumah_saat_ini == 0)
+            if (jumlah_rumah == 0)
             {
                 printf("\nBelum ada data rumah. Silakan input terlebih dahulu.\n");
             }
             else
             {
                 printf("\n--- Semua Data Rumah Saat Ini ---\n");
-                for (int i = 0; i < jumlah_rumah_saat_ini; i++)
+                for (int i = 0; i < jumlah_rumah; i++)
                 {
-                    evaluasiAir(&data_semua_rumah[i]);
+                    evaluasiAir(&rumah[i]);
                     printf("\n--- Rumah %d ---\n", i + 1);
-                    printf("Nama: %s\n", data_semua_rumah[i].nama);
-                    printf("PH: %.1f\n", data_semua_rumah[i].ph);
-                    printf("Bau: %s (%d)\n", data_semua_rumah[i].bau == 1 ? "Ya" : "Tidak", data_semua_rumah[i].bau);
-                    printf("Kekeruhan: %d NTU\n", data_semua_rumah[i].kekeruhan);
-                    printf("Status Sanitasi: %s\n", sanitasiToStr(data_semua_rumah[i].sanitasi));
-                    printf("Poin Insentif: %d\n", data_semua_rumah[i].poin_insentif);
-                    printf("Aksi filter telah digunakan: %d dari 3\n", data_semua_rumah[i].aksiFilterTelahDigunakan);
+                    printf("Nama: %s\n", rumah[i].nama);
+                    printf("PH: %.1f\n", rumah[i].ph);
+                    printf("Bau: %s (%d)\n", rumah[i].bau == 1 ? "Ya" : "Tidak", rumah[i].bau);
+                    printf("Kekeruhan: %d NTU\n", rumah[i].kekeruhan);
+                    printf("Status Sanitasi: %s\n", sanitasiToStr(rumah[i].sanitasi));
+                    printf("Poin Insentif: %d\n", rumah[i].poin_insentif);
+                    printf("Aksi filter telah digunakan: %d dari 3\n", rumah[i].aksiFilterTelahDigunakan);
                 }
             }
             break;
