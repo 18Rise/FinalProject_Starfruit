@@ -150,6 +150,7 @@ int main()
         printf("2. Evaluasi Kualitas Air Semua Rumah\n");
         printf("3. Proses Filter Air (Pilih Rumah)\n");
         printf("4. Tampilkan Semua Data Rumah\n");
+        printf("5. Tampilkan Statistik Kualitas Air Pada Rumah\n");
         printf("0. Keluar\n");
         printf("Pilihan: ");
         if (scanf("%d", &pilihan_menu) != 1)
@@ -306,6 +307,10 @@ int main()
                     printf("Aksi filter telah digunakan: %d dari 3\n", data_semua_rumah[i].aksiFilterTelahDigunakan);
                 }
             }
+            break;
+
+        case 5:
+            tampilkanStatistik(rumah, jumlah_rumah);
             break;
 
         default:

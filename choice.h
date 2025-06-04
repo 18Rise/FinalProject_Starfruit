@@ -22,5 +22,6 @@ typedef struct
 const char *sanitasiToStr(StatusSanitasi s);
 void evaluasiAir(Rumah *r);
 void prosesFilter(Rumah *r);
+void tampilkanStatistik(Rumah daftar[], int jumlah);
 
 #endif
