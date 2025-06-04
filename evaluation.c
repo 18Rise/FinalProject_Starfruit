@@ -1,50 +1,35 @@
-#include "choice.h"
-#include <stdio.h>
+#ifndef CHOICE_H
+#define CHOICE_H
 
-const char *sanitasiToStr(StatusSanitasi s)
+typedef enum
 {
-    switch (s)
-    {
-    case BAIK:
-        return "BAIK";
-    case SEDANG:
-        return "SEDANG";
-    case BURUK:
-        return "BURUK";
-    default:
-        return "-";
-    }
-}
+    BURUK,
+    SEDANG,
+    BAIK
+} StatusSanitasi;
 
-void evaluasiAir(Rumah *r)
+typedef union
 {
-    int masalah = 0;
+    char rekomendasi[100];
+    int hariSejakFilter;
+} CatatanRumah;
 
-    if (r->bau == 1)
-    {
-        masalah++;
-    }
+typedef struct
+{
+    char nama[30];
+    int bau;
+    float ph;
+    int kekeruhan;
+    StatusSanitasi sanitasi;
+    int poin_insentif;
+    int aksiFilterTelahDigunakan;
+    CatatanRumah catatan;
+} Rumah;
 
-    if (r->ph < 6.5 || r->ph > 8.5)
-    {
-        masalah++;
-    }
+const char *sanitasiToStr(StatusSanitasi s);
+void evaluasiAir(Rumah *r);
+void prosesFilter(Rumah *r);
+void beriRekomendasi(Rumah *r);
+void tampilkanStatistik(Rumah daftar[], int jumlah);
 
-    if (r->kekeruhan > 5)
-    {
-        masalah++;
-    }
-
-    if (masalah == 0)
-    {
-        r->sanitasi = BAIK;
-    }
-    else if (masalah == 1)
-    {
-        r->sanitasi = SEDANG;
-    }
-    else
-    {
-        r->sanitasi = BURUK;
-    }
-}
+#endif
