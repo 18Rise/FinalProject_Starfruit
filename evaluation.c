@@ -96,3 +96,4 @@ void beriRekomendasi(Rumah *r)
         printf("Status sanitasi tidak dikenali.\n");
         break;
     }
+}
