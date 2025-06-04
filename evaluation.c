@@ -1,9 +1,4 @@
 #include "choice.h"
-<<<<<<< Updated upstream
-
-void evaluasiKonsumsi(Rumah *r)
-{
-=======
 #include <stdio.h>
 #include <string.h>
 
@@ -101,5 +96,3 @@ void beriRekomendasi(Rumah *r)
         printf("Status sanitasi tidak dikenali.\n");
         break;
     }
->>>>>>> Stashed changes
-}

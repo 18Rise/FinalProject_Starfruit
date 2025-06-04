@@ -2,29 +2,24 @@
 
 ## Tim Pengembang
 
-<<<<<<< Updated upstream
 Anggota kelompok:
-=======
+
 | Nama                       | NPM        |
 | -------------------------- | ---------- |
 | Caesar Nur Falah Widiyanto | 2406487052 |
 | Naziehan labieb            | 2406487102 |
 | Satrio Atalla Rahardjo     | 2406413666 |
-| Yusru Sukur                | 2406345305 |
+| Yusri Sukur                | 2406345305 |
 | Zahir                      | 2406487084 |
->>>>>>> Stashed changes
 
 ## Deskripsi Proyek
 
 Program ini adalah aplikasi berbasis konsol yang dirancang untuk mengelola dan mengevaluasi kualitas air rumah tangga. Pengguna dapat memasukkan data untuk beberapa rumah, menilai status sanitasi air berdasarkan parameter pH, kekeruhan, dan bau, serta mensimulasikan proses penyaringan air. Aspek kunci dari aplikasi ini adalah sistem poin insentif yang memberikan penghargaan atas peningkatan kualitas air dan penggunaan filter yang efisien.
-
-<<<<<<< Updated upstream
 - Memasukkan data rumah: nama, pemakaian air per bulan, dan data kualitas air.
 - Melakukan evaluasi air pada setiap rumah berdasarkan pH, kekeruhan, dan bau.
 - Melakukan filter air pada rumah yang dipilih oleh user.
-=======
+
 ## Fitur Utama
->>>>>>> Stashed changes
 
 Program ini memungkinkan pengguna untuk:
 
@@ -39,6 +34,15 @@ Program ini memungkinkan pengguna untuk:
   - Memberikan poin bonus jika status sanitasi BAIK (Bagus) dicapai dengan jumlah penggunaan filter yang efisien (misalnya, dalam 1 atau 2 kali filter).
 - **Tampilan Data Komprehensif:** Menampilkan daftar semua data rumah, termasuk kualitas air terkini, status sanitasi, jumlah filter yang telah digunakan, dan total poin insentif yang dimiliki.
 - **Statistik Kualitas Air:** Menyajikan ringkasan statistik mengenai kualitas air dari seluruh rumah yang terdaftar, seperti rata-rata pH dan kekeruhan, serta jumlah rumah dalam setiap kategori status sanitasi.
+- Memasukkan data rumah: nama, dan data kualitas air (pH, kekeruhan, bau).
+- Melakukan evaluasi air pada setiap rumah berdasarkan pH, kekeruhan, dan bau untuk menentukan status sanitasi (BAIK, SEDANG, BURUK).
+- Melakukan filter air pada rumah yang dipilih oleh user untuk parameter pH, kekeruhan, dan bau, dengan batasan penggunaan filter per rumah.
+- Menerapkan Sistem Poin Insentif:
+  - Memberikan poin awal berdasarkan status sanitasi air saat rumah pertama kali didata.
+  - Memberikan poin tambahan ketika tindakan filter berhasil meningkatkan status sanitasi air.
+  - Memberikan poin bonus jika status sanitasi BAIK dicapai dengan jumlah penggunaan filter yang efisien.
+  - Menampilkan total poin insentif yang dimiliki oleh setiap rumah.
+- Menampilkan semua data rumah termasuk kualitas air terkini, status sanitasi, jumlah filter yang telah digunakan, dan total poin insentif.
 
 ## Struktur Proyek
 
