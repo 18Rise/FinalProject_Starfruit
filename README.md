@@ -1,8 +1,6 @@
-# Sistem Evaluasi Kualitas Air Rumah Tangga - Proyek Akhir Kelompok Starfruit
+# SDG6 Sanitation and Clean Water - Final Project Starfruit Kelompok 9 Pemrograman Dasar 01
 
-## Tim Pengembang
-
-Anggota kelompok:
+## Anggota
 
 | Nama                       | NPM        |
 | -------------------------- | ---------- |
@@ -15,6 +13,7 @@ Anggota kelompok:
 ## Deskripsi Proyek
 
 Program ini adalah aplikasi berbasis konsol yang dirancang untuk mengelola dan mengevaluasi kualitas air rumah tangga. Pengguna dapat memasukkan data untuk beberapa rumah, menilai status sanitasi air berdasarkan parameter pH, kekeruhan, dan bau, serta mensimulasikan proses penyaringan air. Aspek kunci dari aplikasi ini adalah sistem poin insentif yang memberikan penghargaan atas peningkatan kualitas air dan penggunaan filter yang efisien.
+
 - Memasukkan data rumah: nama, pemakaian air per bulan, dan data kualitas air.
 - Melakukan evaluasi air pada setiap rumah berdasarkan pH, kekeruhan, dan bau.
 - Melakukan filter air pada rumah yang dipilih oleh user.
