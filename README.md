@@ -1,4 +1,4 @@
-# SDG6 Sanitation and Clean Water - Final Project Starfruit Kelompok 9 Pemrograman Dasar 01
+# SDG6 Sanitation and Clean Water - Final Project Starfruit Kelompok 9 Pemrograman Dasar 02
 
 ## Anggota
 
